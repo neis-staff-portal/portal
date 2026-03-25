@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ネイス体操教室 社内ポータル</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Hiragino Sans','Meiryo',sans-serif;background:#F5F5F3;padding:16px;}
+.portal{max-width:780px;margin:0 auto;}
+.header{background:#27500A;border-radius:10px;padding:14px 20px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;}
+.header-title{font-size:15px;font-weight:bold;color:#C0DD97;}
+.header-date{font-size:12px;color:#97C459;}
+.section-label{font-size:11px;font-weight:bold;color:#3B6D11;margin-bottom:8px;margin-top:4px;}
+.section{margin-bottom:20px;}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.quick-card{background:#fff;border:1px solid #E0E0DA;border-radius:10px;padding:12px;text-decoration:none;}
+.quick-card:hover{background:#F5F5F3;}
+.quick-title{font-size:13px;font-weight:bold;color:#1A1A1A;margin-bottom:2px;}
+.quick-sub{font-size:11px;color:#888780;}
+.pin-area{background:#EAF3DE;border-radius:10px;padding:12px 14px;margin-bottom:8px;}
+.pin-label{font-size:10px;font-weight:bold;color:#3B6D11;margin-bottom:8px;}
+.pin-item{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #C0DD97;font-size:13px;color:#27500A;font-weight:bold;}
+.pin-item:last-child{border-bottom:none;}
+.pin-dot{width:6px;height:6px;border-radius:50%;background:#639922;flex-shrink:0;}
+.pin-link{margin-left:auto;font-size:11px;color:#3B6D11;text-decoration:none;}
+.notice-list{display:flex;flex-direction:column;gap:6px;}
+.notice-card{background:#fff;border:1px solid #E0E0DA;border-radius:10px;padding:10px 14px;}
+.notice-card.important{border-left:3px solid #D85A30;border-radius:0 10px 10px 0;}
+.notice-meta{display:flex;align-items:center;gap:6px;margin-bottom:4px;flex-wrap:wrap;}
+.notice-date{font-size:11px;color:#888780;}
+.badge{font-size:10px;padding:2px 8px;border-radius:20px;}
+.badge-imp{background:#FAECE7;color:#993C1D;}
+.badge-new{background:#EAF3DE;color:#3B6D11;}
+.badge-cat{background:#F1EFE8;color:#5F5E5A;}
+.notice-title{font-size:13px;font-weight:bold;color:#1A1A1A;margin-bottom:3px;}
+.notice-link{font-size:11px;color:#185FA5;text-decoration:none;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.col-label{font-size:11px;color:#888780;margin-bottom:6px;}
+.sched-item{background:#fff;border:1px solid #E0E0DA;border-radius:8px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.sched-name{font-size:13px;color:#1A1A1A;}
+.sched-date{font-size:11px;color:#185FA5;font-weight:bold;}
+.perf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.perf-card{background:#F5F5F3;border-radius:8px;padding:10px;text-align:center;}
+.perf-num{font-size:22px;font-weight:bold;}
+.perf-label{font-size:10px;color:#888780;margin-top:2px;}
+.link-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.link-item{background:#fff;border:1px solid #E0E0DA;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:8px;text-decoration:none;}
+.link-item:hover{background:#F5F5F3;}
+.link-dot{width:8px;height:8px;border-radius:50%;background:#97C459;flex-shrink:0;}
+.link-name{font-size:13px;color:#1A1A1A;}
+.link-cat{font-size:10px;color:#888780;}
+.footer{font-size:10px;color:#888780;text-align:center;margin-top:16px;}
+</style>
+</head>
+<body>
+<div class="portal">
+
+  <div class="header">
+    <div class="header-title">ネイス体操教室　社内ポータル</div>
+    <div class="header-date" id="today-date"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">① 今日使うエリア</div>
+    <div class="quick-grid">
+      <a class="quick-card" href="#">
+        <div class="quick-title">朝礼リンク</div>
+        <div class="quick-sub">今日の朝礼を開く</div>
+      </a>
+      <a class="quick-card" href="#">
+        <div class="quick-title">朝礼シート</div>
+        <div class="quick-sub">記入・確認用</div>
+      </a>
+      <a class="quick-card" href="#">
+        <div class="quick-title">月次タスクカレンダー</div>
+        <div class="quick-sub">今月分を確認</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">② 掲示板（重要情報）</div>
+    <div class="pin-area">
+      <div class="pin-label">ピン留め（最大3件）</div>
+      <div class="pin-item"><div class="pin-dot"></div>4月発注締切：3/28（金）正午まで<a class="pin-link" href="#">Teamsを見る →</a></div>
+      <div class="pin-item"><div class="pin-dot"></div>スポーツ保険更新：4/10締切<a class="pin-link" href="#">申請フロー →</a></div>
+      <div class="pin-item"><div class="pin-dot"></div>春期スケジュール変更（4/1〜4/7）<a class="pin-link" href="#">変更一覧 →</a></div>
+    </div>
+    <div class="notice-list">
+      <div class="notice-card important">
+        <div class="notice-meta">
+          <span class="notice-date">2026/03/23</span>
+          <span class="badge badge-imp">重要</span>
+          <span class="badge badge-new">NEW</span>
+          <span class="badge badge-cat">発注</span>
+        </div>
+        <div class="notice-title">4月の備品発注：締切3/28正午</div>
+        <a class="notice-link" href="#">Teamsの投稿を見る →</a>
+      </div>
+      <div class="notice-card">
+        <div class="notice-meta">
+          <span class="notice-date">2026/03/20</span>
+          <span class="badge badge-new">NEW</span>
+          <span class="badge badge-cat">スケジュール</span>
+        </div>
+        <div class="notice-title">春期スケジュール変更のお知らせ（4/1〜）</div>
+        <a class="notice-link" href="#">変更一覧PDFを見る →</a>
+      </div>
+      <div class="notice-card">
+        <div class="notice-meta">
+          <span class="notice-date">2026/03/15</span>
+          <span class="badge badge-cat">保険</span>
+        </div>
+        <div class="notice-title">スポーツ保険の年度更新手続きについて</div>
+        <a class="notice-link" href="#">申請フローを見る →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">③ スケジュール・実績</div>
+    <div class="two-col">
+      <div>
+        <div class="col-label">研修・予定</div>
+        <div class="sched-item"><span class="sched-name">春季指導者研修</span><span class="sched-date">4/5（土）</span></div>
+        <div class="sched-item"><span class="sched-name">月次ミーティング</span><span class="sched-date">3/28（金）</span></div>
+        <div class="sched-item"><span class="sched-name">発表会リハーサル</span><span class="sched-date">4/12（土）</span></div>
+      </div>
+      <div>
+        <div class="col-label">今月の実績</div>
+        <div class="perf-grid">
+          <div class="perf-card"><div class="perf-num" style="color:#A32D2D;">2</div><div class="perf-label">クレーム</div></div>
+          <div class="perf-card"><div class="perf-num" style="color:#854F0B;">0</div><div class="perf-label">事故</div></div>
+          <div class="perf-card"><div class="perf-num" style="color:#3B6D11;">5</div><div class="perf-label">称賛</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">④ 便利リンク集</div>
+    <div class="link-grid">
+      <a class="link-item" href="#"><div class="link-dot"></div><div><div class="link-name">発注表マスターファイル</div><div class="link-cat">Googleドライブ</div></div></a>
+      <a class="link-item" href="#"><div class="link-dot"></div><div><div class="link-name">保険申請フロー</div><div class="link-cat">PDF</div></div></a>
+      <a class="link-item" href="#"><div class="link-dot"></div><div><div class="link-name">hacomono 管理画面</div><div class="link-cat">外部ツール</div></div></a>
+      <a class="link-item" href="#"><div class="link-dot"></div><div><div class="link-name">従業員割引手続き</div><div class="link-cat">社内マニュアル</div></div></a>
+      <a class="link-item" href="#"><div class="link-dot"></div><div><div class="link-name">各種申請フォーム</div><div class="link-cat">Googleフォーム</div></div></a>
+      <a class="link-item" href="#"><div class="link-dot"></div><div><div class="link-name">緊急連絡先一覧</div><div class="link-cat">PDF</div></div></a>
+    </div>
+  </div>
+
+  <div class="footer">※ 本ポータルは社内向けリンクハブです。掲載情報の更新は管理者が行います。</div>
+</div>
+
+<script>
+const d = new Date();
+const days = ['日','月','火','水','木','金','土'];
+document.getElementById('today-date').textContent =
+  d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日（' + days[d.getDay()] + '）';
+</script>
+</body>
+</html>
